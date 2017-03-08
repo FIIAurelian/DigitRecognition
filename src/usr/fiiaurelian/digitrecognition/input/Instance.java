@@ -8,14 +8,20 @@ import java.util.ArrayList;
  */
 public class Instance {
 
-    private String[] attributes;
+    private int[] attributes;
 
-    public Instance(String[] attributes) {
-        System.out.println("Build instance with " + attributes.length + " attributes.");
+    public Instance(int[] attributes) {
         this.attributes = attributes;
     }
 
-    public String[] getAttributes() {
+    public Instance(String[] attributes) {
+        this.attributes = new int[attributes.length];
+        for(int i = 0; i < attributes.length; i++) {
+            this.attributes[i] = Integer.parseInt(attributes[i]);
+        }
+    }
+
+    public int[] getAttributes() {
         return attributes;
     }
 

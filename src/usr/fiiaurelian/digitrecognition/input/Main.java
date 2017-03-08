@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Dataset dataset = Dataset.loadFromCsv("train.csv", ",", true, 0.1);
+        Dataset dataset = Dataset.loadFromCsv("train.csv", ",", true, 0.3);
         System.out.println("Size: " + dataset.getInstances().size());
     }
 }

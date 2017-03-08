@@ -41,16 +41,25 @@ public class Dataset {
 
     public static Dataset loadFromCsv(String filePath, String delimiter, boolean containsHeader, double prob)
             throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        BufferedReader br = null;
         Dataset dataset = new Dataset();
-        String line = null;
+        try {
+            br = new BufferedReader(new FileReader(filePath));
+            String line = null;
 
-        if(containsHeader == true) {
-            dataset.columnNames = br.readLine().split(delimiter);
-        }
-        while((line = br.readLine()) != null) {
-            if(Math.random() < prob) {
-                dataset.addInstance(new Instance(line.split(delimiter)));
+            if (containsHeader == true) {
+                dataset.columnNames = br.readLine().split(delimiter);
+            }
+            while ((line = br.readLine()) != null) {
+                if (Math.random() < prob) {
+                    dataset.addInstance(new Instance(line.split(delimiter)));
+                }
+            }
+        } catch(IOException ioException) {
+            System.err.println("IOException with message: " + ioException.getMessage());
+        } finally {
+            if(br != null) {
+                br.close();
             }
         }
 
